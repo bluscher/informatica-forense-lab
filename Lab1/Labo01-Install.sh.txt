@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#*****************************************
+#* Laboratorio 01 - Un ataque por la red *
+#*****************************************
+#Script de instalacion de herramientas para resolver el labo01 de Infomática forense
+
+
+mkdir /tmp/labo01_tools
+#Instalacion de Snort
+
+wget https://deb.parrot.sh/parrot/pool/main/s/snort/snort-common-libraries_2.9.15.1-5_amd64.deb -O /tmp/labo01_tools/snort-common-libraries_2.9.15.1-5_amd64.deb
+wget https://deb.parrot.sh/parrot/pool/main/s/snort/snort-common_2.9.15.1-5_all.deb -O /tmp/labo01_tools/snort-common_2.9.15.1-5_all.deb
+wget https://deb.parrot.sh/parrot/pool/main/s/snort/snort-doc_2.9.15.1-5_all.deb -O /tmp/labo01_tools/snort-doc_2.9.15.1-5_all.deb
+wget https://deb.parrot.sh/parrot/pool/main/s/snort/snort-rules-default_2.9.15.1-5_all.deb -O /tmp/labo01_tools/snort-rules-default_2.9.15.1-5_all.deb
+wget https://deb.parrot.sh/parrot/pool/main/s/snort/snort_2.9.15.1-5_amd64.deb -O /tmp/labo01_tools/snort_2.9.15.1-5_amd64.deb
+
+sudo apt install /tmp/labo01_tools/snort-common-libraries_2.9.15.1-5_amd64.deb -y
+sudo apt install /tmp/labo01_tools/snort-common_2.9.15.1-5_all.deb -y
+sudo apt install /tmp/labo01_tools/snort-doc_2.9.15.1-5_all.deb -y
+sudo apt install /tmp/labo01_tools/snort-rules-default_2.9.15.1-5_all.deb -y
+sudo apt install /tmp/labo01_tools/snort_2.9.15.1-5_amd64.deb -y
+
+#Instalacion de NetworkMiner
+sudo apt install mono-devel
+wget https://www.netresec.com/?download=NetworkMiner -O /tmp/nm.zip
+sudo unzip /tmp/nm.zip -d /opt/
+cd /opt/NetworkMiner*
+sudo chmod +x NetworkMiner.exe
+sudo chmod -R go+w AssembledFiles/
+sudo chmod -R go+w Captures/
+
+#Para correr el programa ejecutar 'mono NetworkMiner.exe --noupdatecheck'
+
+#Instalacion de wireShark, tshark y p0f
+sudo apt install wireshark tshark p0f -y
+
+#Eliminamos los archivos temporales de instalación
+rm -rf /tmp/labo01_tools
